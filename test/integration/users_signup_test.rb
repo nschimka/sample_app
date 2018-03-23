@@ -24,6 +24,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 			post users_path, params: { user: { name: "b", email: "e@example.com",
 								password: "password", password_confirmation: "password"}}
 		end
+
+		assert is_logged_in?
 		follow_redirect!
 		assert_template 'users/show'
 		assert_select 'div.alert-success'
