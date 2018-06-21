@@ -10,6 +10,8 @@ $gray-medium-light: #eaeaea;
 	box-sizing: border-box;
 }
 
+
+
 /* misc */
 
 .debug_dump {
@@ -163,6 +165,17 @@ aside {
 
 .gravatar_edit {
 	margi-top: 15px;
+}
+
+/* Users index */
+.users {
+	list-style: none;
+	margin: 0;
+	li {
+		overflow: auto;
+		padding: 10px 0;
+		border-bottom: 1px solid $gray-lighter;
+	}
 }
 
 
