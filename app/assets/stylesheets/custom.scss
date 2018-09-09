@@ -10,6 +10,91 @@ $gray-medium-light: #eaeaea;
 	box-sizing: border-box;
 }
 
+/* footer */
+
+footer {
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid $gray-medium-light;
+	color: $gray-light;
+	a {
+		color: $gray;
+	}
+	&:hover {
+		color: $gray-darker;
+	}
+	small {
+		float: left;
+	}
+	ul {
+		float: right;
+		list-style: none;
+		li {
+			float: left;
+			margin-left: 15px;
+		}
+	}
+}
+
+/* forms */
+
+.checkbox {
+	margin-top: -10px;
+	margin-bottom: 10px;
+	span {
+		margin-left: 20px;
+		font-weight: normal;
+	}
+}
+
+input, textarea, select, .uneditable-input {
+	border: 1px solid #bbb;
+	width: 100%;
+	margin-bottom: 15px;
+	@include box_sizing;
+}
+
+input {
+	height: auto !important;
+}
+
+#error_explanation {
+	color: red;
+	ul {
+		color: red;
+		margin: 0 0 30px 0;
+	}
+}
+
+.field_with_errors {
+	@extend .has-error;
+	.form-control {
+		color: $state-danger-text;
+	}
+}
+
+#session_remember_me {
+	width: auto;
+	margin-left: 0;
+}
+
+/* header */
+
+#logo {
+	float: left;
+	margin-right: 10px;
+	font-size: 1.7em;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	padding-top: 9px;
+	font-weight: bold;
+	&:hover {
+		color: white;
+		text-decoration: none;
+	}
+}
+
 /* microposts */
 
 .microposts {
@@ -67,115 +152,6 @@ span.picture {
 	@include box_sizing;
 }
 
-/* universal */
-
-body {
-	padding-top: 60px;
-}
-
-section {
-	overflow: auto;
-}
-
-textarea {
-	resize: vertical;
-}
-
-.center {
-	text-align: center;
-	h1 {
-		margin-bottom: 10px;
-	}
-}
-
-/* forms */
-
-.checkbox {
-	margin-top: -10px;
-	margin-bottom: 10px;
-	span {
-		margin-left: 20px;
-		font-weight: normal;
-	}
-}
-
-#session_remember_me {
-	width: auto;
-	margin-left: 0;
-}
-
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-	font-size: 1.2em;
-	letter-spacing: -1px;
-	margin-bottom: 30px;
-	text-align: center;
-	font-weight: normal;
-	color: $gray-light;
-}
-
-p {
-	font-size: 1.1em;
-	line-height: 1.7em;
-}
-
-/* forms */
-
-input, textarea, select, .uneditable-input {
-	border: 1px solid #bbb;
-	width: 100%;
-	margin-bottom: 15px;
-	@include box_sizing;
-}
-
-input {
-	height: auto !important;
-}
-
-#error_explanation {
-	color: red;
-	ul {
-		color: red;
-		margin: 0 0 30px 0;
-	}
-}
-
-.field_with_errors {
-	@extend .has-error;
-	.form-control {
-		color: $state-danger-text;
-	}
-}
-
-/* header */
-
-#logo {
-	float: left;
-	margin-right: 10px;
-	font-size: 1.7em;
-	color: white;
-	text-transform: uppercase;
-	letter-spacing: -1px;
-	padding-top: 9px;
-	font-weight: bold;
-	&:hover {
-		color: white;
-		text-decoration: none;
-	}
-}
-
 /* sidebar */
 aside {
 	section.user_info {
@@ -212,6 +188,91 @@ aside {
 	margi-top: 15px;
 }
 
+.stats {
+	overflow: auto;
+	margin-top: 0;
+	padding: 0;
+	a {
+		float: left;
+		padding: 0 10px;
+		border-left: 1px solid $gray-lighter;
+		color: gray;
+		&:first-child {
+			padding-left: 0;
+			border: 0;
+		}
+		&:hover {
+			text-decoration: none;
+			color: blue;
+		}
+	}
+	strong {
+		display: block;
+	}
+}
+
+.user_avatars {
+	overflow: auto;
+	margin-top: 10px;
+	.gravatar {
+		margin: 1px 1px;
+	}
+	a {
+		padding: 0;
+	}
+}
+
+.users.follow {
+	padding: 0;
+}
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+	font-size: 1.2em;
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: normal;
+	color: $gray-light;
+}
+
+p {
+	font-size: 1.1em;
+	line-height: 1.7em;
+}
+
+/* universal */
+
+body {
+	padding-top: 60px;
+}
+
+section {
+	overflow: auto;
+}
+
+textarea {
+	resize: vertical;
+}
+
+.center {
+	text-align: center;
+	h1 {
+		margin-bottom: 10px;
+	}
+}
+
 /* Users index */
 .users {
 	list-style: none;
@@ -224,28 +285,3 @@ aside {
 }
 
 
-/* footer */
-
-footer {
-	margin-top: 45px;
-	padding-top: 5px;
-	border-top: 1px solid $gray-medium-light;
-	color: $gray-light;
-	a {
-		color: $gray;
-	}
-	&:hover {
-		color: $gray-darker;
-	}
-	small {
-		float: left;
-	}
-	ul {
-		float: right;
-		list-style: none;
-		li {
-			float: left;
-			margin-left: 15px;
-		}
-	}
-}

@@ -1,6 +1,15 @@
 class User < ApplicationRecord
 	has_many :microposts, dependent: :destroy
-	
+	has_many :active_relationships, class_name: "Relationship",
+							foreign_key: "follower_id",
+							dependent: :destroy
+	has_many :following, through: :active_relationships, source: :followed
+	has_many :passive_relationships, class_name: "Relationship",
+							foreign_key: "followed_id",
+							dependent: :destroy
+	#source unneeded below because Rails knows to singularize follower
+	has_many :followers, through: :passive_relationships, source: :follower
+
 	before_save :downcase_email
 	before_create :create_activation_digest
 	validates :name, presence: true, length: { maximum: 50 }
@@ -66,10 +75,39 @@ class User < ApplicationRecord
 	end
 
 	#Defines a proto-feed of microposts on home page
-	#question mark ensures id val is escaped before being included in the SQL
-	#query to protect from SQL injections
 	def feed
-		Micropost.where("user_id = ?", id)
+		#question mark ensures id val is escaped before being included in the SQL
+		#query to protect from SQL injections
+		#Micropost.where("user_id IN", id) only includes user's posts
+
+		#following_ids is provided by Active Record by default
+		#is same as User.first.following.map(&:id)
+		#which is calling the id method on every member of array
+		#following_ids is interpolated with (?)
+		#BUT this method is slow
+		#Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+	
+		#this uses a subselect, which arranges for the set logic to be 
+		#done in the DB (more efficient)
+		following_ids = "SELECT followed_id FROM relationships
+						WHERE follower_id = :user_id"
+		Micropost.where("user_id IN (#{following_ids}) OR user_id = :user_id",
+					user_id: id)
+	end
+
+	#follow another user
+	def follow(other_user)
+		following << other_user
+	end
+
+	#stop following a user
+	def unfollow(other_user)
+		following.delete(other_user)
+	end
+
+	#return true if curr user is following other user
+	def following?(other_user)
+		following.include?(other_user)
 	end
 
 	private

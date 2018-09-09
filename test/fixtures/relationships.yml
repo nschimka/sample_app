@@ -1,0 +1,15 @@
+one:
+  follower: barbara
+  followed: lana
+
+two:
+  follower: andy
+  followed: lana
+
+three:
+  follower: andy
+  followed: barbara
+
+four:
+  follower: lana
+  followed: andy
