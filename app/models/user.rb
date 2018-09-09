@@ -65,6 +65,13 @@ class User < ApplicationRecord
 		reset_sent_at < 2.hours.ago # < is earlier than, not less than
 	end
 
+	#Defines a proto-feed of microposts on home page
+	#question mark ensures id val is escaped before being included in the SQL
+	#query to protect from SQL injections
+	def feed
+		Micropost.where("user_id = ?", id)
+	end
+
 	private
 
 		def downcase_email
