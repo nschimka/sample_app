@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user,  only: :destroy
 
+  include ChargifyHelper
+
   def new
   	@user = User.new
   end
@@ -21,9 +23,29 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  	  @user.send_activation_email
-      flash[:success] = "Please check your email to activate your account."
-      redirect_to root_url
+      full_name = @user.name.split()
+      first_name = full_name[0]
+      last_name = full_name[1]
+      
+      configure_chargify
+      sub = Chargify::Subscription.create(
+        product_handle: "trial",
+        customer_attributes: {
+          first_name: first_name,
+          last_name: last_name,
+          email: @user.email
+        }
+      )
+      if sub.errors.any?
+        #puts sub.errors.messages
+        render :json => { :errors => sub.errors.full_messages }
+        flash[:danger] = "We could not create an account for you."
+      else
+        @user.send_activation_email
+        flash[:success] = "Your free trial has begun! Please check your email to activate your account."
+        redirect_to root_url
+      end
+      
   	else
   		render 'new'
   	end

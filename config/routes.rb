@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   get 'password_resets/edit'
 
-  get '/signup', to: 'users#new'
-  get '/help', to: 'static_pages#help'
-  get '/about', to: 'static_pages#about'
-  get '/contact', to: 'static_pages#contact'
   root 'static_pages#home'
+  get '/pricing', to: 'static_pages#pricing'
+  get '/signup', to: 'users#new'
+  get '/about', to: 'static_pages#about'
+  get '/resend_activation', to: 'account_activations#new'
+  post '/resend_activation', to: 'account_activations#create'
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

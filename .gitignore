@@ -7,6 +7,9 @@
 #Ignore uploaded test images
 /public/uploads
 
+#Ignore local environment stuff
+/config/app_environment_variables.rb
+
 # Ignore bundler config.
 /.bundle
 

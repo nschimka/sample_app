@@ -1,0 +1,13 @@
+<% provide(:title, "Resend my Activation Email") %>
+<h1>Resend my Activation Email</h1>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= form_for(:account_activations, url: resend_activation_path) do |f| %>
+			<%= f.label :email %>
+			<%= f.email_field :email, class: 'form-control' %>
+
+			<%= f.submit "Submit", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
