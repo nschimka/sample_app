@@ -42,6 +42,7 @@ class UsersController < ApplicationController
         flash[:danger] = "We could not create an account for you."
       else
         @user.send_activation_email
+        @user.set_chargify_id(sub.id)
         flash[:success] = "Your free trial has begun! Please check your email to activate your account."
         redirect_to root_url
       end
@@ -69,6 +70,33 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  
+#this stuff ain't workin
+
+  #page to ask for another activation email
+  #get
+  def new_activation
+  end
+
+  #this is for re-sending an activation email
+  #post
+  def resend_activation
+    @user = User.find_by(email: params[:q])
+
+    if !@user 
+      flash[:danger] = "No account was found with that e-mail address."
+      redirect_to signup_path
+    elsif !@user.activated?
+      @user.send_activation_email
+      flash[:success] = "Please check your email to activate your account."
+      redirect_to root_url
+    elsif @user.activated?
+      flash[:info] = "Your account has already been activated."
+      redirect_to login_path
+    end
+    
   end
 
   def following
