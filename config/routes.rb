@@ -23,4 +23,9 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :subscriptions do
+    member do
+      get :cancel
+    end
+  end
 end

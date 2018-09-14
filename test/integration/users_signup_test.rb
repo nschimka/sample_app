@@ -1,5 +1,7 @@
 require 'test_helper'
 
+include ChargifyHelper
+
 class UsersSignupTest < ActionDispatch::IntegrationTest
   
 	def setup
@@ -32,6 +34,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 		assert_equal 1, ActionMailer::Base.deliveries.size
 		user = assigns(:user)
 		assert_not user.activated?
+
+		#verify chargify subscription created
+		configure_chargify
+		chargify = user.subscriptions.first.chargify_id
+		#will error with 404 if unsuccessful
+		Chargify::Subscription.find(chargify) 
 
 		#Logging in before activation should fail
 		log_in_as(user)

@@ -82,6 +82,14 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "associated subscriptions should be destroyed" do
+    @user.save
+    @user.subscriptions.create!(chargify_id: 1111)
+    assert_difference "Subscription.count", -1 do
+      @user.destroy
+    end
+  end
+
   test "should follow and unfollow a user" do
     barbara = users(:barbara)
     lana = users(:lana)

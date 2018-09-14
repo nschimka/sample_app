@@ -1,0 +1,15 @@
+<% provide(:title, "Cancel Your Subscription") %>
+<div class="row">
+	<aside class="col-md-8">
+		<section class="cancel">
+			<h1>Cancel Your Subscription</h1>
+			<p>Would you like to cancel your subscription? You will no longer be billed, but you will not have access to Twötter.</p>
+			<p>You can choose to cancel and lose access immediately; or to keep access until your next billing period, at which point the account will close without an additional bill.</p>
+			
+			<%= form_for(@subscription) do |f| %>
+			<%= f.submit 'Cancel now', class: "btn" %>
+			<%= f.submit 'Cancel later', class: "btn" %>
+			<% end %>
+		</section>
+	</aside>
+</div>

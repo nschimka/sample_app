@@ -19,6 +19,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 	assert_select "a[href=?]", users_path
 	assert_select "a[href=?]", user_path(user)
 	assert_select "a[href=?]", edit_user_path(user)
+	assert_select "a[href=?]", subscription_path(user)
 	assert_select "a[href=?]", pricing_path, false
 
    end
