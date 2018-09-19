@@ -18,12 +18,17 @@ include ChargifyHelper
 	def update
 		@user = User.find(params[:id])
 		@subscription = @user.subscriptions.first
-		sub_id = @subscription.chargify_id
 		configure_chargify
-		sub = Chargify::Subscription.find(sub_id)
+		sub = Chargify::Subscription.find(@subscription.chargify_id)
+
+		#This doesn't prevent users from logging in again 
 		if params[:commit] == 'Cancel now'
 			sub.cancel
+			@subscription.cancel_local_subscription
 			log_out
+			redirect_to signup_path
+			flash[:success] = "Your subscription has been canceled."
+
 		elsif params[:commit] == 'Cancel later'
 			sub.delayed_cancel
 			flash.now[:success] = "Your subscription will cancel soon."

@@ -41,7 +41,7 @@ class UsersController < ApplicationController
         render :json => { :errors => sub.errors.full_messages }
         flash[:danger] = "We could not create an account for you."
       else
-        @subscription = @user.subscriptions.build(chargify_id: sub.id)
+        @subscription = @user.subscriptions.build(chargify_id: sub.id, state: sub.state)
         @subscription.save
         @user.send_activation_email
         flash[:success] = "Your free trial has begun! Please check your email to activate your account."

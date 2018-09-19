@@ -25,4 +25,4 @@ For more information, see the
 [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
 ## To do
 - revoke access when a subscription cancels through `state` on subscription
-- 
+- access control levels; https://github.com/varvet/pundit ?
