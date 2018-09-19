@@ -15,6 +15,14 @@ include ChargifyHelper
 		redirect_private_pages(@user)
 	end
 
+	def update_payment
+
+	end
+
+	def change_plan
+
+	end
+
 	def update
 		@user = User.find(params[:id])
 		@subscription = @user.subscriptions.first

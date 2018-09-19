@@ -84,7 +84,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated subscriptions should be destroyed" do
     @user.save
-    @user.subscriptions.create!(chargify_id: 1111)
+    @user.subscriptions.create!(chargify_id: 1111, state: "active")
     assert_difference "Subscription.count", -1 do
       @user.destroy
     end

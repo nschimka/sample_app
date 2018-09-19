@@ -4,7 +4,7 @@ class SubscriptionTest < ActiveSupport::TestCase
   
 	def setup
 		@user = users(:barbara)
-		@subscription = @user.subscriptions.build(chargify_id: 12345)
+		@subscription = subscriptions(:one)
 	end
 
 	test "should be valid" do 

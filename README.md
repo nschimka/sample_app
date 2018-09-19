@@ -26,3 +26,4 @@ For more information, see the
 ## To do
 - revoke access when a subscription cancels through `state` on subscription
 - access control levels; https://github.com/varvet/pundit ?
+- chargify.js to update card

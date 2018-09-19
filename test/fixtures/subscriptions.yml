@@ -3,7 +3,9 @@
 one:
   chargify_id: 23400086
   user: barbara
+  state: "active"
 
 two: 
   chargify_id: 23400104
   user: lana
+  state: "trialing"

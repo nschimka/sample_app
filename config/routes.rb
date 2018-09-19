@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   resources :subscriptions do
     member do
       get :cancel
+      get :update_payment
+      get :change_plan
     end
   end
 end

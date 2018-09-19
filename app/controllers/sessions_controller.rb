@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
   def create
   	@user = User.find_by(email: params[:session][:email].downcase)
-    @subscription = @user.subscriptions.first
   	if @user && @user.authenticate(params[:session][:password])
       if @user.activated?
     		log_in @user
@@ -14,9 +13,7 @@ class SessionsController < ApplicationController
         message = "Account not activated. "
         message += "Check your email for the activation link."
         flash[:warning] = message
-        redirect_to root_url
-      elseif 
-
+        redirect_to root_url 
       end
   	else
   		flash.now[:danger] = 'Invalid email/password combination'
