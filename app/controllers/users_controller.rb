@@ -89,10 +89,10 @@ class UsersController < ApplicationController
     if !@user 
       flash[:danger] = "No account was found with that e-mail address."
       redirect_to signup_path
-    elsif !@user.activated?
-      @user.send_activation_email
-      flash[:success] = "Please check your email to activate your account."
-      redirect_to root_url
+    #elsif !@user.activated?
+    #  @user.send_activation_email
+    #  flash[:success] = "Please check your email to activate your account."
+    #  redirect_to root_url
     elsif @user.activated?
       flash[:info] = "Your account has already been activated."
       redirect_to login_path
