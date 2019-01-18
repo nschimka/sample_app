@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       if sub.errors.any?
         #puts sub.errors.messages
         render :json => { :errors => sub.errors.full_messages }
-        flash[:danger] = "We could not create an account for you."
+        #delete the user because the subscription failed
       else
         @subscription = @user.subscriptions.build(chargify_id: sub.id, state: sub.state)
         @subscription.save

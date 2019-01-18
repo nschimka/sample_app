@@ -30,4 +30,8 @@ Rails.application.routes.draw do
       get :change_plan
     end
   end
+
+  namespace :chargify do
+  	resources :webhooks, only: :create
+  end
 end

@@ -1,7 +1,12 @@
+#include UsersHelper?
+#include ChargifyHelper?
+
 class SubscriptionsController < ApplicationController
 
-include UsersHelper
-include ChargifyHelper
+	include UsersHelper
+	include ChargifyHelper
+
+	#before_filter :redirect_private_pages?
 
 	def show
 		@user = User.find(params[:id])
